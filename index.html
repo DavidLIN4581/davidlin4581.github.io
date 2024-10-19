@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David LIN的个人主页</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <style>
+        /* Reset some default browser styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Global styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #444;
+            background: #ffffff; /* 设置为纯白色 */
+            transition: background-color 0.3s ease;
+        }
+
+        /* Navigation */
+        nav {
+            background: #4c7099; /* 深蓝灰色 */
+            color: #fff;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0.5rem 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 1rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #fff;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Header */
+        header {
+            background: #4c7099; /* 深蓝灰色 */
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px; /* To avoid overlapping with navigation */
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 50%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transform: skewX(-45deg);
+            animation: shine 5s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { left: -50%; }
+            100% { left: 150%; }
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 60px; /* To avoid overlapping with navigation */
+        }
+
+        .hero-section {
+            height: calc(100vh - 60px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-section h2 {
+            font-size: 2em;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .section {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid transparent;
+            padding: 2rem;
+        }
+
+        .section:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+            border-color: #4c7099;
+        }
+
+        .section h2 {
+            margin-bottom: 1rem;
+            font-size: 1.8em;
+            color: #444;
+        }
+
+        .skills ul,
+        .projects ul {
+            list-style: none;
+            padding-left: 2rem;
+        }
+
+        .skills ul li,
+        .projects ul li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .skills ul li::before,
+        .projects ul li::before {
+            content: "\2022";
+            color: #444;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            position: absolute;
+            left: 0;
+            top: 0.1em;
+        }
+
+        .contact-info a {
+            display: block;
+            color: #444;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #4c7099;
+            color: #fff;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+
+            .hero-section {
+                height: auto;
+                padding: 2rem 0;
+            }
+        }
+
+        /* Scrollbar customization */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+    <nav id="nav-bar">
+        <ul>
+            <li><a href="#about-me">关于我</a></li>
+            <li><a href="#skills">技能</a></li>
+            <li><a href="#projects">项目</a></li>
+            <li><a href="#contact-info">联系信息</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1 id="welcome-header">欢迎来到David LIN的主页</h1>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <h2>您好，我叫David LIN</h2>
+                <p>一个喜欢折腾电脑的小学生</p>
+            </div>
+        </section>
+
+        <section id="about-me" class="container section">
+            <h2>关于我</h2>
+            <p>一个小学生，叫做David LIN，喜欢折腾电脑，会HTML和Python，非常高兴可以认识您！</p>
+        </section>
+
+        <section id="skills" class="container section">
+            <h2>技能</h2>
+            <ul>
+                <li>编程（HTML或Python）</li>
+                <li>网上冲浪（这好像不是技能）</li>
+                <li>单板滑雪</li>
+            </ul>
+        </section>
+
+        <section id="projects" class="container section">
+            <h2>项目</h2>
+            <ul>
+                <li>SQCHAT - 同局域网内多人畅聊</li>
+                <li>SQMONEY - 极简的记账软件</li>
+                <li>David Blog - 一个IT博客</li>
+            </ul>
+        </section>
+
+        <section id="contact-info" class="container section">
+            <h2>联系信息</h2>
+            <a href="mailto:torchwood4581@hotmail.com">torchwood4581@hotmail.com</a>
+            <a href="http://david4581.github.io">我的博客</a>
+        </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 David LIN</p>
+    </footer>
+
+    <script>
+        // Track clicks on the navigation bar
+        let clickCount = 0;
+
+        document.getElementById('nav-bar').addEventListener('click', function() {
+            if (++clickCount === 5) {
+                document.getElementById('welcome-header').textContent = "恭喜！您发现了彩蛋，试试拷贝滑雪字样吧！";
+                document.body.addEventListener('copy', function() {
+                    if (document.getSelection().toString().includes("滑雪")) {
+                        document.getElementById('welcome-header').textContent = "感谢你的浏览！希望你喜欢这里！";
+                    }
+                }, { once: true });
+            }
+        });
+
+        // Check if user selects "David LIN"
+        document.addEventListener('mouseup', function(event) {
+            const selection = window.getSelection();
+            if (selection.toString() === 'David LIN') {
+                alert("您好，非常高兴认识您，此文本属于彩蛋，用途为介绍我自己，如果您希望进一步认识我，那么请仔细阅读接下来的文本。")
+				alert("我叫David LIN，是个小学生，我不知道您在阅读这些文本时的时间，但在我写下这些的文本的今天，我还是一个五年级的小学生。")
+				alert("很高兴认识您，希望您在这里可以了解我的基本信息并认识我。")
+				alert("您可以通过电子邮件联系我")
+				alert("提示：David LIN的时间胶囊已经结束")
+            }
+        });
+    </script>
+
+    <!-- Optional JavaScript -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
